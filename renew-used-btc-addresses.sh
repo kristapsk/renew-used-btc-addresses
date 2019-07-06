@@ -35,6 +35,7 @@ grep -o "\([13][a-km-zA-HJ-NP-Z1-9]\{25,39\}\|bc1[a-z0-9]\{8,87\}\|BC1[A-Z0-9]\{
         fi
         new_address=$(bitcoin-cli getnewaddress "" $address_type 2> /dev/null)
         if [ "$new_address" != "" ]; then
+            git pull > /dev/null
             echo "Replacing used BTC address $address to $new_address in $directory/$filename"
             sed -i "s/$address/$new_address/g" "$filename"
         fi
